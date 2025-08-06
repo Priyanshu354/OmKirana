@@ -17,9 +17,9 @@ const port = process.env.PORT;
 const connectDB = async () => {
     try {
         await mongoose.connect(process.env.DB_URL);
-        console.log("✅ DB connected Successfully");
+        console.log("DB connected Successfully");
     } catch (error) {
-        console.error("❌ DB connection failed:", error);
+        console.error("DB connection failed:", error);
         process.exit(1);
     }
 };
@@ -29,9 +29,7 @@ app.get("/", (req, res) => {
     res.send("Hi, You are here on Om Kirana");
 });
 
-//console.log(process.env.EMAIL, process.env.EMAIL_PASS);
-
 app.use("/api/users", userRoutes);
-app.use("/api/otp", otpRoutes);
+app.use("/api/auth", otpRoutes);
 
 app.listen(port, () => console.log(`🚀 Server is listening on PORT ${port}`));

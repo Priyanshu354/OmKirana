@@ -1,7 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
-const registered = async (req, res, next) => {
+const protect = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
 
@@ -10,10 +10,6 @@ const registered = async (req, res, next) => {
         }
 
         const token = authHeader.split(" ")[1];
-
-        if (!token) {
-            return res.status(401).json({ message: "Token missing" });
-        }
 
         const decoded = jwt.verify(token, process.env.JWT_SECRET);
         const user = await User.findById(decoded.user.id).select("-password");
@@ -30,4 +26,28 @@ const registered = async (req, res, next) => {
     }
 };
 
-module.exports = { registered };
+const verifyResetToken = (req, res, next) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader || !authHeader.startsWith("Bearer ")) {
+        return res.status(401).json({ message: "Missing or invalid token" });
+    }
+
+    const token = authHeader.split(" ")[1];
+
+    try {
+        const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+        if (decoded.purpose !== "password_reset") {
+            return res.status(403).json({ message: "Invalid token purpose" });
+        }
+
+        req.user = { _id: decoded.userId };
+        next();
+    } catch (error) {
+        console.error("Reset token error:", error.message);
+        return res.status(401).json({ message: "Invalid or expired token" });
+    }
+};
+
+module.exports = { protect, verifyResetToken };

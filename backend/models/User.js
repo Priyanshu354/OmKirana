@@ -26,10 +26,6 @@ const userSchema = new mongoose.Schema({
         type: Boolean, 
         default: false
     },
-    otp: { 
-        code: String,
-        expiresAt: Date
-    },
     role: {
         type : String, 
         enum : ["customer", "admin"],
