@@ -176,6 +176,7 @@
   * Earn on purchase
   * Redeem on purchase or lending dues
 * Multi-language support
+* Product Details by scaning QR
 
 ## **Security & Performance**
 
@@ -198,7 +199,7 @@
 
 * Products listing, details, filters, search
 * Cart with guest + merge
-* Dynamic Price, Checkout with address, payment, delivery/pickup
+* Checkout with address, payment, delivery/pickup, Dymamic Pricings
 
 **Phase 3: Orders + Reviews + Wishlist**
 
@@ -214,7 +215,7 @@
 
 **Phase 5: Admin Dashboard & Management**
 
-* Orders, products, users, coupons
+* Orders, products, users, coupons, Dynamic Pricings
 * Analytics charts
 
 **Phase 6: UX & Performance Polish**
