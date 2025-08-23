@@ -7,6 +7,16 @@ require("dotenv").config();
 
 const router = express.Router();
 
+const generateAccessToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: "15m"});
+}
+
+const generateRefreshToken = (payload) => {
+    return jwt.sign(payload, process.env.JWT_SECRET, {expiresIn: "7d"});
+}
+
+
+
 // @route   POST api/users/register
 // @desc    Register user
 // @access  Public
@@ -43,25 +53,27 @@ router.post("/register", async (req, res) => {
             }
         };
 
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET,
-            { expiresIn: "24h" },
-            (err, token) => {
-                if (err) throw err;
+        let accessToken, refreshToken;
 
-                res.status(201).json({
-                    user: {
-                        _id: user._id,
-                        name: user.name,
-                        email: user.email,
-                        phone: user.phone,
-                        role: user.role
-                    },
-                    token
-                });
-            }
-        );
+        try {
+            accessToken = generateAccessToken(payload);
+            refreshToken = generateRefreshToken(payload);
+        } catch (error) {
+            return res.status(500).json({ message: "Failed to generate tokens" });
+        }
+
+        res.cookie("refreshToken", refreshToken,{
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "Strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
+
+        res.status(201).json({
+            message: "User registered successfully",
+            accessToken,
+            user: { id: user._id, name: user.name, email: user.email },
+        });
     } catch (error) {
         console.error("Register error:", error);
         res.status(500).send("Server Error");
@@ -99,25 +111,27 @@ router.post("/login", async (req, res) => {
             }
         };
 
-        jwt.sign(
-            payload,
-            process.env.JWT_SECRET,
-            { expiresIn: "24h" },
-            (err, token) => {
-                if (err) throw err;
+        let accessToken, refreshToken;
 
-                res.status(200).json({
-                    user: {
-                        _id: user._id,
-                        name: user.name,
-                        email: user.email,
-                        phone: user.phone,
-                        role: user.role
-                    },
-                    token
-                });
-            }
-        );
+        try {
+            accessToken = generateAccessToken(payload);
+            refreshToken = generateRefreshToken(payload);
+        } catch (error) {
+            return res.status(500).json({ message: "Failed to generate tokens" });
+        }
+
+        res.cookie("refreshToken", refreshToken,{
+            httpOnly: true,
+            secure: process.env.NODE_ENV === "production",
+            sameSite: "Strict",
+            maxAge: 7 * 24 * 60 * 60 * 1000,
+        });
+
+        res.status(201).json({
+            message: "User registered successfully",
+            accessToken,
+            user: { id: user._id, name: user.name, email: user.email },
+        });
     } catch (error) {
         console.error("Login error:", error);
         res.status(500).send("Server Error");

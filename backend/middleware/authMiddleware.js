@@ -50,4 +50,25 @@ const verifyResetToken = (req, res, next) => {
     }
 };
 
-module.exports = { protect, verifyResetToken };
+const verifyRefreshToken = async (req, res, next) => {
+    const refreshToken = req.cookies.refreshToken;
+
+    try {
+        if(!refreshToken){
+            return res.status(400).json({message: "No token, authorization denied"})
+        }
+
+        const decoded = jwt.verify(refreshToken, process.env.JWT_SECRET);
+        const user = await User.findById(decoded.user.id).select("-password");
+
+        if (!user) {
+            return res.status(401).json({ message: "User not found" });
+        }
+
+        req.user = user;
+    } catch (error) {
+        console.error("JWT verification error:", error.message);
+        return res.status(401).json({ message: "Not authorized, token failed" });
+    }
+};
+module.exports = { protect, verifyResetToken, verifyRefreshToken };

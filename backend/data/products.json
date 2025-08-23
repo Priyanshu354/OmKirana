@@ -1,0 +1,822 @@
+[
+  {
+    "name": "Aashirvaad Whole Wheat Atta",
+    "brand": "Aashirvaad",
+    "category": "Grocery",
+    "MRP": 320,
+    "price": 275,
+    "quantity": 5,
+    "unit": "kg",
+    "stock": 60,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159234/products/asjejnmpqdiwe1ckie8h.jpg",
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159233/products/pti0cdw5tk7uawxwlegu.jpg"
+      ]
+    },
+    "description": "Freshly milled whole wheat flour, high in fiber; perfect for soft rotis and daily cooking.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Fortune Basmati Rice",
+    "brand": "Fortune",
+    "category": "Grocery",
+    "MRP": 620,
+    "price": 520,
+    "quantity": 5,
+    "unit": "kg",
+    "stock": 40,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159236/products/zjmluge26678uttdhruj.jpg",
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159236/products/skldnx6ynpupub1hcjlb.jpg"
+      ]
+    },
+    "description": "Long-grain aromatic basmati rice suitable for biryani and everyday meals.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Tata Iodized Salt",
+    "brand": "Tata",
+    "category": "Grocery",
+    "MRP": 25,
+    "price": 20,
+    "quantity": 1,
+    "unit": "kg",
+    "stock": 200,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159237/products/rfltix1gzh4ubovjn48m.jpg"
+      ]
+    },
+    "description": "Pure iodized salt for everyday cooking and seasoning.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Parle-G Glucose Biscuits",
+    "brand": "Parle",
+    "category": "Snacks",
+    "MRP": 12,
+    "price": 10,
+    "quantity": 1,
+    "unit": "pack",
+    "stock": 300,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755882465/parle-G_glucose_biscuits_xmutbe.jpg"
+      ]
+    },
+    "description": "Classic glucose biscuits loved across age groups; great with tea.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Britannia Good Day Cashew Cookies",
+    "brand": "Britannia",
+    "category": "Snacks",
+    "MRP": 35,
+    "price": 30,
+    "quantity": 1,
+    "unit": "pack",
+    "stock": 180,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159238/products/s1xspyghov453d5hk7la.webp"
+      ]
+    },
+    "description": "Buttery, crunchy cookies with cashew pieces; ideal for gifting and snacking.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Amul Taaza Toned Milk",
+    "brand": "Amul",
+    "category": "Dairy & Bakery",
+    "MRP": 30,
+    "price": 25,
+    "quantity": 500,
+    "unit": "ml",
+    "stock": 100,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159239/products/i0h8qsfjfyxuwo8f484e.webp"
+      ]
+    },
+    "description": "Fresh toned milk, rich in calcium and suitable for daily consumption.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Mother Dairy Fresh Curd",
+    "brand": "Mother Dairy",
+    "category": "Dairy & Bakery",
+    "MRP": 35,
+    "price": 30,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 80,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159241/products/xtjsb9he83dy7z6vjbuh.webp"
+      ]
+    },
+    "description": "Creamy and fresh curd, perfect for raitas and digestive benefits.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Red Label Premium Tea",
+    "brand": "Brooke Bond Red Label",
+    "category": "Beverages",
+    "MRP": 180,
+    "price": 150,
+    "quantity": 250,
+    "unit": "g",
+    "stock": 50,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159242/products/zh1g2tw7ru9wd7unokxe.webp"
+      ]
+    },
+    "description": "Strong Assam blend offering rich aroma and full-bodied flavor.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Nescafe Classic Instant Coffee",
+    "brand": "Nescafe",
+    "category": "Beverages",
+    "MRP": 300,
+    "price": 250,
+    "quantity": 100,
+    "unit": "g",
+    "stock": 40,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159243/products/qni04flinsla8jpp2t1g.webp",
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159245/products/jlvpznr92iupqenmw4xz.jpg"
+      ]
+    },
+    "description": "Rich instant coffee granules for a quick, aromatic cup.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Bru Gold Instant Coffee",
+    "brand": "BRU",
+    "category": "Beverages",
+    "MRP": 240,
+    "price": 200,
+    "quantity": 100,
+    "unit": "g",
+    "stock": 35,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159247/products/xxiuyxmxfh8ajsaw8z65.webp"
+      ]
+    },
+    "description": "Premium coffee blend with strong aroma and smooth taste.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Maggi 2-Minute Masala Noodles",
+    "brand": "Maggi",
+    "category": "Packaged Food",
+    "MRP": 18,
+    "price": 14,
+    "quantity": 1,
+    "unit": "pack",
+    "stock": 280,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755882588/Maggi_2-Minute_Masala_Noodles_nr9ner.jpg",
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755882589/Maggi_2-Minute_Masala_Noodles_Back_huiobi.jpg"
+      ]
+    },
+    "description": "Instant noodles with signature masala; ready in 2 minutes.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Sunfeast Yippee Noodles",
+    "brand": "Sunfeast",
+    "category": "Packaged Food",
+    "MRP": 60,
+    "price": 50,
+    "quantity": 1,
+    "unit": "pack",
+    "stock": 100,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159248/products/qz09gtjyjlqpwn71yzdm.webp",
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159248/products/heguiepepzbziqiisakv.jpg"
+      ]
+    },
+    "description": "Non-sticky long noodles with a tasty masala for quick meals.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Everest Red Chilli Powder",
+    "brand": "Everest",
+    "category": "Spices & Masala",
+    "MRP": 95,
+    "price": 80,
+    "quantity": 200,
+    "unit": "g",
+    "stock": 90,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159249/products/mqnk1tybr89j9atblqyq.webp"
+      ]
+    },
+    "description": "Bright red chilli powder made from premium dried chillies for authentic spice.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Catch Turmeric Powder",
+    "brand": "Catch",
+    "category": "Spices & Masala",
+    "MRP": 70,
+    "price": 60,
+    "quantity": 200,
+    "unit": "g",
+    "stock": 100,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159251/products/opnt5vmfxvckilc3liaj.webp"
+      ]
+    },
+    "description": "High-quality turmeric powder, rich in curcumin; used in everyday cooking.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Fortune Sunflower Refined Oil",
+    "brand": "Fortune",
+    "category": "Oil & Ghee",
+    "MRP": 180,
+    "price": 150,
+    "quantity": 1,
+    "unit": "ltr",
+    "stock": 80,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159252/products/c0mmrsphwk2sepeti2le.jpg",
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159252/products/weevd1uklhiv75afayrq.jpg"
+      ]
+    },
+    "description": "Light, refined sunflower oil for frying and cooking.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Amul Pure Cow Ghee",
+    "brand": "Amul",
+    "category": "Oil & Ghee",
+    "MRP": 650,
+    "price": 550,
+    "quantity": 1,
+    "unit": "ltr",
+    "stock": 25,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159254/products/mlrdgxvajw72hmmhpb0k.webp"
+      ]
+    },
+    "description": "100% pure cow ghee prepared traditionally; rich aroma and taste.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Lifebuoy Total 10 Soap",
+    "brand": "Lifebuoy",
+    "category": "Personal Care",
+    "MRP": 40,
+    "price": 35,
+    "quantity": 1,
+    "unit": "pcs",
+    "stock": 140,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159255/products/z1vmmuw6vskhhwpc3ubg.jpg"
+      ]
+    },
+    "description": "Antibacterial soap with germ protection; suitable for daily use.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Dove Intense Repair Shampoo",
+    "brand": "Dove",
+    "category": "Personal Care",
+    "MRP": 140,
+    "price": 120,
+    "quantity": 180,
+    "unit": "ml",
+    "stock": 60,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159257/products/ecaszplbczoerypi4og5.webp"
+      ]
+    },
+    "description": "Keratin-enriched shampoo to repair damaged hair and prevent breakage.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Colgate Max Fresh Toothpaste",
+    "brand": "Colgate",
+    "category": "Personal Care",
+    "MRP": 65,
+    "price": 55,
+    "quantity": 100,
+    "unit": "g",
+    "stock": 100,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159258/products/higolhlatl3godln7qvh.webp"
+      ]
+    },
+    "description": "Toothpaste with cavity protection and breath-freshening beads.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Harpic Bathroom Cleaner",
+    "brand": "Harpic",
+    "category": "Household",
+    "MRP": 110,
+    "price": 95,
+    "quantity": 500,
+    "unit": "ml",
+    "stock": 70,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159260/products/ri1d6zwbsua5skfv8lbs.jpg"
+      ]
+    },
+    "description": "Powerful toilet and bathroom cleaner that removes stains and kills germs.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Surf Excel Matic Detergent",
+    "brand": "Surf Excel",
+    "category": "Household",
+    "MRP": 140,
+    "price": 110,
+    "quantity": 1,
+    "unit": "kg",
+    "stock": 90,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159261/products/k200nfcgzpo2bgzu8khm.jpg"
+      ]
+    },
+    "description": "Premium detergent for washing machines with superior stain removal.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Vim Dishwash Liquid",
+    "brand": "Vim",
+    "category": "Household",
+    "MRP": 70,
+    "price": 60,
+    "quantity": 500,
+    "unit": "ml",
+    "stock": 80,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159264/products/jlj3m8nsmwoswz3qqeuo.webp"
+      ]
+    },
+    "description": "Lemon-fragrance dishwashing liquid for grease removal and sparkling utensils.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "MDH Garam Masala",
+    "brand": "MDH",
+    "category": "Spices & Masala",
+    "MRP": 110,
+    "price": 90,
+    "quantity": 100,
+    "unit": "g",
+    "stock": 75,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159267/products/p7n3mb5wipso75kvminu.jpg"
+      ]
+    },
+    "description": "Traditional Indian garam masala for rich aroma and flavor in gravies and curries.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Pepsi Carbonated Soft Drink",
+    "brand": "Pepsi",
+    "category": "Beverages",
+    "MRP": 50,
+    "price": 40,
+    "quantity": 750,
+    "unit": "ml",
+    "stock": 120,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159269/products/homgmc7y2narxjy9lnr7.webp"
+      ]
+    },
+    "description": "Classic cola-flavoured carbonated beverage to refresh and energize.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Coca-Cola Classic",
+    "brand": "Coca-Cola",
+    "category": "Beverages",
+    "MRP": 50,
+    "price": 40,
+    "quantity": 750,
+    "unit": "ml",
+    "stock": 110,
+    "image": {
+      "url": []
+    },
+    "description": "Refreshing cola drink with the classic Coca-Cola taste.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Sprite Lemon Lime",
+    "brand": "Sprite",
+    "category": "Beverages",
+    "MRP": 50,
+    "price": 40,
+    "quantity": 750,
+    "unit": "ml",
+    "stock": 90,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159270/products/dvxzvfps6iooei9wu8ma.webp"
+      ]
+    },
+    "description": "Lemon-lime flavored carbonation for a crisp, refreshing drink.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Bournvita Health Drink",
+    "brand": "Bournvita",
+    "category": "Beverages",
+    "MRP": 300,
+    "price": 250,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 45,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159272/products/nwuaa4qhw1b33cftgy5x.webp"
+      ]
+    },
+    "description": "Chocolate malt health drink to support energy and growth.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Complan Nutritious Drink",
+    "brand": "Complan",
+    "category": "Beverages",
+    "MRP": 330,
+    "price": 280,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 35,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159273/products/espmshfrkd5gpcetrfqu.webp"
+      ]
+    },
+    "description": "Nutritional health drink suitable for children and adults.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Lays Classic",
+    "brand": "Lays",
+    "category": "Snacks",
+    "MRP": 25,
+    "price": 20,
+    "quantity": 1,
+    "unit": "pack",
+    "stock": 200,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159274/products/oddespbftzxehnke2jnl.jpg"
+      ]
+    },
+    "description": "Crispy potato chips with classic salt seasoning.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Kurkure Masala Munch",
+    "brand": "Kurkure",
+    "category": "Snacks",
+    "MRP": 25,
+    "price": 20,
+    "quantity": 1,
+    "unit": "pack",
+    "stock": 190,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159276/products/xmqpjzpfazcjhtifjqs5.webp"
+      ]
+    },
+    "description": "Crunchy, spicy snack with tangy masala flavors.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Bikaji Bhujia",
+    "brand": "Bikaji",
+    "category": "Snacks",
+    "MRP": 75,
+    "price": 60,
+    "quantity": 400,
+    "unit": "g",
+    "stock": 70,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159277/products/s5hhygnbm96rc2jnu0t5.webp"
+      ]
+    },
+    "description": "Crispy, traditional bhujia made with premium gram flour.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Haldiram's Soan Papdi",
+    "brand": "Haldiram's",
+    "category": "Snacks",
+    "MRP": 140,
+    "price": 120,
+    "quantity": 400,
+    "unit": "g",
+    "stock": 60,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755882977/Haldiram_s_Soan_Papdi_gq6qkf.jpg"
+      ]
+    },
+    "description": "Flaky, sweet traditional Indian mithai for festivals and gifting.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Kissan Tomato Ketchup",
+    "brand": "Kissan",
+    "category": "Packaged Food",
+    "MRP": 70,
+    "price": 60,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 95,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159279/products/tgo3qt6xw4u4lbws6oke.webp"
+      ]
+    },
+    "description": "Tangy and sweet tomato ketchup — great for snacks and meals.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Safal Frozen Green Peas",
+    "brand": "Safal",
+    "category": "Packaged Food",
+    "MRP": 90,
+    "price": 80,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 40,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159280/products/lujmigvbrcckqiqyg3kw.jpg"
+      ]
+    },
+    "description": "Fresh frozen green peas, ready to cook and nutritious.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Patanjali Honey",
+    "brand": "Patanjali",
+    "category": "Grocery",
+    "MRP": 150,
+    "price": 120,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 55,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159282/products/gapjiqjcyum3m4zkksup.avif"
+      ]
+    },
+    "description": "Natural honey sourced from Indian farms; ideal for daily use.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Peanut Butter Crunchy",
+    "brand": "Homebrand",
+    "category": "Packaged Food",
+    "MRP": 220,
+    "price": 180,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 40,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159286/products/bwlbvmgqrcyzqwsewjwy.jpg"
+      ]
+    },
+    "description": "Crunchy peanut butter, great for sandwiches and breakfast.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Ariel Matic Front Load Powder",
+    "brand": "Ariel",
+    "category": "Household",
+    "MRP": 300,
+    "price": 240,
+    "quantity": 2,
+    "unit": "kg",
+    "stock": 50,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755883286/Ariel_Matic_Front_Load_Powder_egh5fs.webp"
+      ]
+    },
+    "description": "Detergent powder specially formulated for front-load washing machines.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Dettol Antiseptic Liquid",
+    "brand": "Dettol",
+    "category": "Personal Care",
+    "MRP": 180,
+    "price": 150,
+    "quantity": 500,
+    "unit": "ml",
+    "stock": 70,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755883476/Dettol_Antiseptic_Liquid_ihhq6b.avif"
+      ]
+    },
+    "description": "Trusted antiseptic liquid for first aid and household hygiene.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Nivea Soft Moisturizing Cream",
+    "brand": "Nivea",
+    "category": "Personal Care",
+    "MRP": 180,
+    "price": 150,
+    "quantity": 100,
+    "unit": "ml",
+    "stock": 55,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159288/products/wfkyvthrvhuy8kjjsbkd.webp"
+      ]
+    },
+    "description": "Light, non-greasy moisturizer suitable for face and body.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Colgate Toothpaste Advanced",
+    "brand": "Colgate",
+    "category": "Personal Care",
+    "MRP": 80,
+    "price": 65,
+    "quantity": 150,
+    "unit": "g",
+    "stock": 85,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159290/products/d6v70m6y2qdqyiljcu5a.jpg"
+      ]
+    },
+    "description": "Advanced cavity protection toothpaste for daily oral care.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Wheel Detergent Powder",
+    "brand": "Wheel",
+    "category": "Household",
+    "MRP": 60,
+    "price": 50,
+    "quantity": 1,
+    "unit": "kg",
+    "stock": 130,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159291/products/xmfzfaj5yge2fa0fq8mb.webp"
+      ]
+    },
+    "description": "Economical washing powder for everyday laundry needs.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Rin Washing Bar",
+    "brand": "Rin",
+    "category": "Household",
+    "MRP": 12,
+    "price": 10,
+    "quantity": 1,
+    "unit": "pcs",
+    "stock": 180,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755883620/Rin_Washing_Bar_dqo1mp.avif"
+      ]
+    },
+    "description": "Effective detergent bar for removing tough stains from clothes.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "MDH Pav Bhaji Masala",
+    "brand": "MDH",
+    "category": "Spices & Masala",
+    "MRP": 120,
+    "price": 100,
+    "quantity": 200,
+    "unit": "g",
+    "stock": 60,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159292/products/vtwyl48howkoak8jgi7d.jpg"
+      ]
+    },
+    "description": "Flavorful masala specially blended for pav bhaji and mixed veg gravies.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Gits Rava Idli Mix",
+    "brand": "Gits",
+    "category": "Packaged Food",
+    "MRP": 95,
+    "price": 80,
+    "quantity": 500,
+    "unit": "g",
+    "stock": 45,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/raw/upload/v1755883790/Gits_Rava_Idli_Mix_z303jz.html"
+      ]
+    },
+    "description": "Quick rava idli mix for soft and fluffy idlis in minutes.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Amul Butter",
+    "brand": "Amul",
+    "category": "Dairy & Bakery",
+    "MRP": 180,
+    "price": 160,
+    "quantity": 200,
+    "unit": "g",
+    "stock": 65,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159294/products/jq4mvyo7ztfzeecue54m.webp"
+      ]
+    },
+    "description": "Rich creamy butter made from fresh milk; ideal for cooking and spreading.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Britannia Cheese Slices",
+    "brand": "Britannia",
+    "category": "Dairy & Bakery",
+    "MRP": 120,
+    "price": 100,
+    "quantity": 200,
+    "unit": "g",
+    "stock": 50,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159295/products/rphgfnwaoi3ovq8j92i6.jpg"
+      ]
+    },
+    "description": "Convenient processed cheese slices for sandwiches and snacks.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Fortune Soyabean Oil",
+    "brand": "Fortune",
+    "category": "Oil & Ghee",
+    "MRP": 210,
+    "price": 180,
+    "quantity": 1,
+    "unit": "ltr",
+    "stock": 75,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159296/products/opbd1fltmookem1lkqvt.webp"
+      ]
+    },
+    "description": "Heart-healthy soybean oil suitable for everyday cooking.",
+    "priceByCustomer": false
+  },
+  {
+    "name": "Amul Paneer Fresh",
+    "brand": "Amul",
+    "category": "Dairy & Bakery",
+    "MRP": 260,
+    "price": 230,
+    "quantity": 200,
+    "unit": "g",
+    "stock": 40,
+    "image": {
+      "url": [
+        "https://res.cloudinary.com/dqpga2diu/image/upload/v1755159297/products/lkbdjbdmexhqsrbqetic.webp"
+      ]
+    },
+    "description": "Fresh cottage cheese (paneer) with soft texture, ideal for curries and snacks.",
+    "priceByCustomer": false
+  }
+]
