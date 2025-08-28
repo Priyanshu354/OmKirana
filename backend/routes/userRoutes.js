@@ -21,8 +21,9 @@ const generateRefreshToken = (payload) => {
 // @desc    Register user
 // @access  Public
 router.post("/register", async (req, res) => {
-    const { name, email, phone, password, role } = req.body;
-
+    const { name, email, phone, password } = req.body;
+    let {role} = req.body;
+    
     try {
         let user = await User.findOne({ email });
         if (user) {

@@ -1,6 +1,7 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/User");
 
+// verify login for protectect routes
 const protect = async (req, res, next) => {
     try {
         const authHeader = req.headers.authorization;
@@ -26,6 +27,18 @@ const protect = async (req, res, next) => {
     }
 };
 
+// role check
+const authorize = (...roles) => {
+  return (req, res, next) => {
+    if (!req.user || !roles.includes(req.user.role)) {
+      return res.status(403).json({ message: "Not authorized" });
+    }
+    next();
+  };
+};
+
+
+// forget password verification token middleware
 const verifyResetToken = (req, res, next) => {
     const authHeader = req.headers.authorization;
 
@@ -50,9 +63,11 @@ const verifyResetToken = (req, res, next) => {
     }
 };
 
+// verify refresh token for token regeneration
 const verifyRefreshToken = async (req, res, next) => {
     const refreshToken = req.cookies.refreshToken;
 
+    //console.log(refreshToken);
     try {
         if(!refreshToken){
             return res.status(400).json({message: "No token, authorization denied"})
@@ -66,9 +81,11 @@ const verifyRefreshToken = async (req, res, next) => {
         }
 
         req.user = user;
+        next();
     } catch (error) {
         console.error("JWT verification error:", error.message);
         return res.status(401).json({ message: "Not authorized, token failed" });
     }
 };
-module.exports = { protect, verifyResetToken, verifyRefreshToken };
+
+module.exports = { protect, verifyResetToken, verifyRefreshToken,  authorize };

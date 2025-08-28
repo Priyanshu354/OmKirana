@@ -8,6 +8,7 @@ const generateAccessToken = (payload) => {
 }
 
 router.post("/", verifyRefreshToken, (req, res) => {
+    //console.log(" hi i am here ");
     const payload = {
         user: {
             id: req.user._id,
@@ -18,7 +19,7 @@ router.post("/", verifyRefreshToken, (req, res) => {
     let accessToken;
     try {
         accessToken = generateAccessToken(payload);
-        res.json({ accessToken });
+        res.status(201).json({ accessToken });
     } catch (error) {
         console.error("Refresh Token Failed", error);
         return res.status(500).json({ message: "Failed to generate access token" });
