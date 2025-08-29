@@ -43,10 +43,22 @@ const productSchema = new mongoose.Schema(
         message: "Price cannot be greater than MRP",
       },
     },
+    quantityType: {
+      type: String,
+      required: true,
+      enum: ["packaged", "loose"],
+    },
     quantity: {
       type: Number,
-      required: true,
-      min: 0,
+      default: function () {
+        return this.quantityType === "packed" ? 1 : null;
+      },
+      validate: {
+        validator: function (value) {
+          return value === null || value > 0;
+        },
+        message: "Quantity must be greater than 0",
+      },
     },
     unit: {
       type: String,
@@ -55,7 +67,6 @@ const productSchema = new mongoose.Schema(
     },
     size: {
       type: String,
-      required: true,
       enum: ["Small", "Medium", "Large", "XL"],
     },
     stock: {
@@ -69,7 +80,10 @@ const productSchema = new mongoose.Schema(
         required: true,
         validate: {
           validator: function (urls) {
-            return urls.length > 0 && urls.every((url) => typeof url === "string" && url.trim() !== "");
+            return (
+              urls.length > 0 &&
+              urls.every((url) => typeof url === "string" && url.trim() !== "")
+            );
           },
           message: "At least one valid image URL is required",
         },
@@ -84,21 +98,21 @@ const productSchema = new mongoose.Schema(
       type: Boolean,
       default: false,
     },
-    averageRating: { 
+    averageRating: {
       type: Number,
       default: 0,
-      min: 0
+      min: 0,
     },
     totalReviews: {
       type: Number,
       default: 0,
-      min: 0
+      min: 0,
     },
     orderCount: {
       type: Number,
       default: 0,
-      min: 0
-    }
+      min: 0,
+    },
   },
   { timestamps: true }
 );

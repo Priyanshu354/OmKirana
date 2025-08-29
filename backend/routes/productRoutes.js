@@ -13,6 +13,7 @@ const commonProjection = {
   category: 1,
   MRP: 1,
   price: 1,
+  quantityType: 1,
   quantity: 1,
   unit: 1,
   size: 1,
@@ -21,7 +22,7 @@ const commonProjection = {
   averageRating: 1,
   priceByCustomer: 1,
   stock: {
-    $cond: [{ $lte: ["$stock", 10] }, "$stock", "$$REMOVE"],
+    $cond: [{ $lte: ["$stock", 20] }, "$stock", "$$REMOVE"],
   },
 };
 
@@ -81,6 +82,7 @@ router.get("/filter", async (req, res) => {
       search,
       brand,
       category,
+      quantityType,
       minPrice,
       maxPrice,
       size,
@@ -107,6 +109,7 @@ router.get("/filter", async (req, res) => {
     if (brand) filterConditions.push({ term: { path: "brand", query: brand } });
     if (category) filterConditions.push({ term: { path: "category", query: category } });
     if (size) filterConditions.push({ term: { path: "size", query: size } });
+    if (quantityType) filterConditions.push({ term: { path: "quantityType", query: quantityType } });
 
     if (minPrice || maxPrice) {
       const priceRange = {};
@@ -160,7 +163,7 @@ router.get("/auto-complete", async (req, res) => {
       return res.status(400).json({ message: "Query param 'q' is required" });
     }
 
-    const suggestions = await Product.aggregate([
+    const suggestions = await aggregateProducts([
       {
         $search: {
           index: "productSearchIndex",
@@ -182,13 +185,6 @@ router.get("/auto-complete", async (req, res) => {
               },
             ],
           },
-        },
-      },
-      {
-        $project: {
-          name: 1,
-          brand: 1,
-          score: { $meta: "searchScore" },
         },
       },
       { $limit: parsedLimit },
@@ -254,9 +250,7 @@ router.get("/:id", async (req, res) => {
     if (!mongoose.Types.ObjectId.isValid(id))
       return res.status(400).json({ message: "Invalid product ID" });
 
-    const product = await aggregateProducts([
-      { $match: { _id: new mongoose.Types.ObjectId(id) } },
-    ]);
+    const product = await aggregateProducts([{ $match: { _id: new mongoose.Types.ObjectId(id) } }]);
 
     if (!product.length) return res.status(404).json({ message: "Product not found" });
 
@@ -279,11 +273,10 @@ router.get("/new-arrival", async (req, res) => {
       query._id = { $lt: new mongoose.Types.ObjectId(lastId) };
     }
 
-    const newArrivals = await Product.aggregate([
+    const newArrivals = await aggregateProducts([
       { $match: query },
       { $sort: { _id: -1 } },
       { $limit: limit + 1 },
-      { $project: commonProjection },
     ]);
 
     const { docs, hasMore, lastId: newLastId } = paginate(newArrivals, limit);

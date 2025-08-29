@@ -1,8 +1,8 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const Product = require("../models/Product");
-const handleError = require("../utils/handleError");
-const { protect, authorize } = require("../middleware/authMiddleware");
+const Product = require("../../models/Product");
+const handleError = require("../../utils/handleError");
+const { protect, authorize } = require("../../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -47,6 +47,7 @@ router.post("/", protect, authorize("admin"), async (req, res) => {
     MRP,
     price,
     quantity,
+    quantityType,
     unit,
     size,
     stock,
@@ -94,6 +95,7 @@ router.put("/:id", protect, authorize("admin"), async (req, res) => {
     MRP,
     price,
     quantity,
+    quantityType,
     unit,
     size,
     stock,
@@ -115,6 +117,7 @@ router.put("/:id", protect, authorize("admin"), async (req, res) => {
     product.MRP = MRP;
     product.price = price;
     product.quantity = quantity;
+    product.quantityType = quantityType;
     product.unit = unit;
     product.size = size;
     product.stock = stock;
