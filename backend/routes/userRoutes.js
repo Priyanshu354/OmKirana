@@ -22,16 +22,17 @@ const generateRefreshToken = (payload) => {
 // @access  Public
 router.post("/register", async (req, res) => {
     const { name, email, phone, password } = req.body;
-    let {role} = req.body;
     
     try {
         let user = await User.findOne({ email });
         if (user) {
-            return res.status(400).json({ message: "User already exists" });
-        }
-
-        if(!role){
-            role = "customer";
+            if(user.isVerified){
+                return res.status(400).json({ message: "User already exists" });
+            }
+            else{
+                return res.status(400).json({ message: "User is already exisit but not verified"})
+            }
+            
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -42,7 +43,6 @@ router.post("/register", async (req, res) => {
             email,
             phone,
             password: hashedPassword,
-            role
         });
 
         await user.save();
@@ -129,7 +129,7 @@ router.post("/login", async (req, res) => {
         });
 
         res.status(201).json({
-            message: "User registered successfully",
+            message: "User login successfully",
             accessToken,
             user: { id: user._id, name: user.name, email: user.email },
         });

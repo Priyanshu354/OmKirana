@@ -8,7 +8,7 @@ const generateAccessToken = (payload) => {
 }
 
 router.post("/", verifyRefreshToken, (req, res) => {
-    //console.log(" hi i am here ");
+    
     const payload = {
         user: {
             id: req.user._id,

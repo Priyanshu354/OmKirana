@@ -194,6 +194,7 @@
 **Phase 1: Core Setup & Auth**
 
 * DB models, JWT, OTP flows
+-> User Profile, Address managment & all Section I will built at last.
 
 **Phase 2: Product + Cart + Checkout**
 
@@ -206,6 +207,7 @@
 * Order flows (place, view, track)
 * Review/rating
 * Wishlist
+-> Review, rating & wishlist I will Build at last.
 
 **Phase 4: Notifications + Chat + Lending**
 
@@ -225,3 +227,4 @@
 **Phase 7: Special Features (Post-MVP)**
 
 * Loyalty system, PWA, QR codes, real-time delivery tracking
+

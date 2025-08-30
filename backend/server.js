@@ -8,8 +8,12 @@ const otpRoutes = require("./routes/otpRoutes");
 const uploadRoute = require("./routes/uploadRoutes");
 const refreshTokenRoute = require("./routes/refreshTokenRoutes");
 const productRoutes = require("./routes/productRoutes");
-const adminProductRoute = require("./routes/Admin/adminProducts");
 const cartRoute = require("./routes/cartRotutes");
+const checkoutRoute = require("./routes/checkoutRoutes");
+const orderRoute = require("./routes/orderRoutes");
+
+const adminProductRoute = require("./routes/Admin/adminProductRoutes");
+const adminOrderRoute = require("./routes/Admin/adminOrderRoutes");
 
 dotenv.config();
 
@@ -48,8 +52,11 @@ app.use("/api/uploads", uploadRoute);
 app.use("/api/refresh-token", refreshTokenRoute);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoute);
+app.use("/api/checkout", checkoutRoute);
+app.use("/api/orders" , orderRoute);
 
 // Admin Routes
 app.use("/api/admin/products", adminProductRoute);  
+app.use("/api/admin/orders", adminOrderRoute);
 
 app.listen(port, () => console.log(`🚀 Server is listening on PORT ${port}`));

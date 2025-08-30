@@ -183,6 +183,32 @@ router.get("/", optionalAuth, async (req, res) => {
   }
 });
 
+// @route    GET api/cart/refresh
+// @desc     Refresh cart prices with latest product data
+// @access   Public
+router.get("/refresh", protect, async (req, res) => {
+  try {
+    const userId = req.user?._id || null;
+    const guestId = req.cookies.guestId || null;
+    const cart = await getCart(guestId, userId);
+
+    if (!cart) return res.status(404).json({ message: "Cart not found" });
+
+    for (let item of cart.items) {
+      const product = await Product.findById(item.product).select("price MRP");
+      if (product) {
+        item.price = product.price;
+        item.MRP = product.MRP;
+      }
+    }
+
+    await cart.save();
+    res.json(cart);
+  } catch (err) {
+    handleError(res, err);
+  }
+});
+
 // @route    DELETE api/cart/:productId
 // @desc     Remove a single product from cart
 // @access   Public
@@ -238,6 +264,10 @@ router.post("/merge-cart", protect, async (req, res) => {
       guestCart.user = userId;
       guestCart.guestId = null;
       await guestCart.save();
+
+      // cleanup cookie
+      res.clearCookie("guestId");
+
       return res.status(200).json(guestCart);
     }
 
@@ -254,6 +284,9 @@ router.post("/merge-cart", protect, async (req, res) => {
 
     await userCart.save();
     await guestCart.deleteOne();
+
+    // cleanup cookie
+    res.clearCookie("guestId");
 
     res.status(200).json(userCart);
   } catch (err) {
