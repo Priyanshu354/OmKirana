@@ -3,6 +3,13 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 const cookieParser = require('cookie-parser');
 const dotenv = require("dotenv");
+const { createServer } = require("http");
+
+// SoketIo + redisClient
+const { Server } = require("socket.io");
+const { redisClient, connectRedis } = require('./redis');
+
+// User Routes Import
 const userRoutes = require("./routes/userRoutes");
 const otpRoutes = require("./routes/otpRoutes");
 const uploadRoute = require("./routes/uploadRoutes");
@@ -12,21 +19,69 @@ const cartRoute = require("./routes/cartRotutes");
 const checkoutRoute = require("./routes/checkoutRoutes");
 const orderRoute = require("./routes/orderRoutes");
 
+// Admin Routes Import
 const adminProductRoute = require("./routes/Admin/adminProductRoutes");
 const adminOrderRoute = require("./routes/Admin/adminOrderRoutes");
 
 dotenv.config();
 
 const app = express();
+const httpServer = createServer(app);
+
+const io = new Server(httpServer, {
+  cors: {
+    origin: "*", // change it in production
+    methods: "*",
+  }
+});
+
 app.use(express.json());
 app.use(cookieParser());
 
 app.use(
   cors({
-    origin: "*",
+    origin: "*", // change it in production
     credentials: true,
   })
 );
+
+(async () => {
+  await connectRedis();
+
+  const sub = redisClient.duplicate();
+  await sub.connect();
+
+  await sub.subscribe('direct-chat', (raw) => {
+    const {to , message} = JSON.parse(raw);
+    io.to(`user:${to}`).emit('direct',{message});
+  });
+})();
+
+
+io.on('connection', (socket) => {
+  const { userId } = socket.handshake.query;
+
+  if (userId) {
+    socket.userId = userId;
+    socket.join(`user:${userId}`);
+    //console.log(`Socket ${socket.id} joined room user:${userId}`);
+  }
+
+  socket.on('direct', async ({ to, text }) => {
+    if (!to || !text) return;
+
+    const msg = { from: socket.userId, text, ts: Date.now() };
+    
+    await Message.create({ from: socket.userId, to, text });
+
+    io.to(`user:${to}`).emit('direct', msg);
+    await redisClient.publish('direct-chat', JSON.stringify({ to, message: msg }));
+  });
+
+  socket.on('disconnect', () => {
+    //console.log('Socket disconnected', socket.id);
+  });
+});
 
 const port = process.env.PORT;
 
@@ -59,4 +114,4 @@ app.use("/api/orders" , orderRoute);
 app.use("/api/admin/products", adminProductRoute);  
 app.use("/api/admin/orders", adminOrderRoute);
 
-app.listen(port, () => console.log(`🚀 Server is listening on PORT ${port}`));
+httpServer.listen(port, () => console.log(`🚀 Server is listening on PORT ${port}`));
