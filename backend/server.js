@@ -1,19 +1,26 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const cookieParser = require('cookie-parser');
+const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const { createServer } = require("http");
+const { v4: uuidv4 } = require("uuid");
 
 // Socket.IO + Redis Adapter
 const { Server } = require("socket.io");
-const { redisClient, connectRedis } = require('./redis');
+const { redisClient, connectRedis } = require("./redis");
 const { createAdapter } = require("@socket.io/redis-adapter");
 
-// Import Models
-const Message = require("./models/Message");
+// BullMQ Queue + Bull Board
+const { messageQueue } = require("./queues/messageQueue");
+const { ExpressAdapter } = require("@bull-board/express");
+const { createBullBoard } = require("@bull-board/api");
+const { BullMQAdapter } = require("@bull-board/api/bullMQAdapter");
 
-// User Routes
+// Middleware
+const { authorize, protect } = require("./middleware/authMiddleware");
+
+// Routes
 const userRoutes = require("./routes/userRoutes");
 const otpRoutes = require("./routes/otpRoutes");
 const uploadRoute = require("./routes/uploadRoutes");
@@ -34,11 +41,12 @@ const httpServer = createServer(app);
 
 const io = new Server(httpServer, {
   cors: {
-    origin: "*", // change in production
-    methods: "*",
-  }
+    origin: "*", // restrict in production
+    methods: ["GET", "POST"],
+  },
 });
 
+// --- Middlewares ---
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: "*", credentials: true }));
@@ -57,8 +65,8 @@ app.use(cors({ origin: "*", credentials: true }));
   console.log("✅ Socket.IO Redis Adapter connected");
 })();
 
-
-io.on('connection', (socket) => {
+// --- Socket.IO Events ---
+io.on("connection", (socket) => {
   const { userId } = socket.handshake.query;
 
   if (userId) {
@@ -67,29 +75,53 @@ io.on('connection', (socket) => {
     console.log(`Socket ${socket.id} joined room user:${userId}`);
   }
 
-  socket.on('direct', async ({ to, text }) => {
+  socket.on("direct", async ({ to, text }) => {
     if (!to || !text) return;
 
-    const msg = { from: socket.userId, text, ts: Date.now() };
+    const msg = {
+      messageId: uuidv4(),
+      from: socket.userId,
+      to,
+      text,
+      ts: Date.now(),
+    };
 
-    Message.create({ from: socket.userId, to, text })
-      .catch(err => console.error("Failed to save message:", err));
+    // Add job to queue for persistence
+    await messageQueue.add("save-message", msg, {
+      attempts: 5,
+      backoff: { type: "exponential", delay: 1000 },
+      removeOnComplete: true,
+      removeOnFail: false,
+    });
 
-    io.to(`user:${to}`).emit('direct', msg);
+    // Real-time emit
+    io.to(`user:${to}`).emit("direct", msg);
   });
 
-  socket.on('disconnect', () => {
-    console.log(`Socket disconnected: ${socket.id}`);
+  socket.on("disconnect", () => {
+    console.log(`❌ Socket disconnected: ${socket.id}`);
   });
 });
+
+// --- Bull Board Setup ---
+const serverAdapter = new ExpressAdapter();
+serverAdapter.setBasePath("/admin/queues");
+
+createBullBoard({
+  queues: [new BullMQAdapter(messageQueue)],
+  serverAdapter,
+});
+
+// Protect Bull Board in production
+app.use("/admin/queues", protect, authorize("admin"), serverAdapter.getRouter());
 
 // --- MongoDB Connection ---
 const connectDB = async () => {
   try {
     await mongoose.connect(process.env.DB_URL);
-    console.log("DB connected Successfully");
+    console.log("✅ MongoDB connected");
   } catch (error) {
-    console.error("DB connection failed:", error);
+    console.error("❌ MongoDB connection failed:", error);
     process.exit(1);
   }
 };
@@ -108,8 +140,11 @@ app.use("/api/checkout", checkoutRoute);
 app.use("/api/orders", orderRoute);
 
 // Admin Routes
-app.use("/api/admin/products", adminProductRoute);  
+app.use("/api/admin/products", adminProductRoute);
 app.use("/api/admin/orders", adminOrderRoute);
 
+// --- Start Server ---
 const port = process.env.PORT || 3000;
-httpServer.listen(port, () => console.log(`🚀 Server is listening on PORT ${port}`));
+httpServer.listen(port, () =>
+  console.log(`🚀 Server running on http://localhost:${port}`)
+);
