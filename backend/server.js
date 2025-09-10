@@ -4,21 +4,15 @@ const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 const { createServer } = require("http");
-const { v4: uuidv4 } = require("uuid");
 
-// Socket.IO + Redis Adapter
-const { Server } = require("socket.io");
-const { redisClient, connectRedis } = require("./redis");
-const { createAdapter } = require("@socket.io/redis-adapter");
-
-// BullMQ Queue + Bull Board
-const { messageQueue } = require("./queues/messageQueue");
+// BullMQ + Bull Board
 const { ExpressAdapter } = require("@bull-board/express");
 const { createBullBoard } = require("@bull-board/api");
 const { BullMQAdapter } = require("@bull-board/api/bullMQAdapter");
+const { messageQueue } = require("./queues/messageQueue");
 
 // Middleware
-const { authorize, protect } = require("./middleware/authMiddleware");
+const { protect, authorize } = require("./middleware/authMiddleware");
 
 // Routes
 const userRoutes = require("./routes/userRoutes");
@@ -34,74 +28,21 @@ const orderRoute = require("./routes/orderRoutes");
 const adminProductRoute = require("./routes/Admin/adminProductRoutes");
 const adminOrderRoute = require("./routes/Admin/adminOrderRoutes");
 
+// Socket.IO
+const { initSocket } = require("./socket/io");
+
 dotenv.config();
 
 const app = express();
 const httpServer = createServer(app);
-
-const io = new Server(httpServer, {
-  cors: {
-    origin: "*", // restrict in production
-    methods: ["GET", "POST"],
-  },
-});
 
 // --- Middlewares ---
 app.use(express.json());
 app.use(cookieParser());
 app.use(cors({ origin: "*", credentials: true }));
 
-// --- Redis Adapter Setup ---
-(async () => {
-  await connectRedis();
-
-  const pubClient = redisClient.duplicate();
-  const subClient = redisClient.duplicate();
-
-  await pubClient.connect();
-  await subClient.connect();
-
-  io.adapter(createAdapter(pubClient, subClient));
-  console.log("✅ Socket.IO Redis Adapter connected");
-})();
-
-// --- Socket.IO Events ---
-io.on("connection", (socket) => {
-  const { userId } = socket.handshake.query;
-
-  if (userId) {
-    socket.userId = userId;
-    socket.join(`user:${userId}`);
-    console.log(`Socket ${socket.id} joined room user:${userId}`);
-  }
-
-  socket.on("direct", async ({ to, text }) => {
-    if (!to || !text) return;
-
-    const msg = {
-      messageId: uuidv4(),
-      from: socket.userId,
-      to,
-      text,
-      ts: Date.now(),
-    };
-
-    // Add job to queue for persistence
-    await messageQueue.add("save-message", msg, {
-      attempts: 5,
-      backoff: { type: "exponential", delay: 1000 },
-      removeOnComplete: true,
-      removeOnFail: false,
-    });
-
-    // Real-time emit
-    io.to(`user:${to}`).emit("direct", msg);
-  });
-
-  socket.on("disconnect", () => {
-    console.log(`❌ Socket disconnected: ${socket.id}`);
-  });
-});
+// --- Socket.IO Initialization ---
+initSocket(httpServer);
 
 // --- Bull Board Setup ---
 const serverAdapter = new ExpressAdapter();
@@ -112,7 +53,6 @@ createBullBoard({
   serverAdapter,
 });
 
-// Protect Bull Board in production
 app.use("/admin/queues", protect, authorize("admin"), serverAdapter.getRouter());
 
 // --- MongoDB Connection ---
