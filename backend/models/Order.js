@@ -66,7 +66,7 @@ const orderSchema = new mongoose.Schema(
 
     name: { type: String, required: true },
     mobile: { type: String, required: true },
-    totalPrice: { type: Number, required: true, min: 0 },
+    totalPrice: { type: Number, required: true, min: 1 },
 
     // Payment details
     paymentStatus: {
@@ -74,6 +74,7 @@ const orderSchema = new mongoose.Schema(
       enum: ["Pending", "Paid", "Failed"],
       default: "Pending",
     },
+
     isPaid: { type: Boolean, default: false },
     paidAt: { type: Date },
     paymentDetails: { type: Object, default: {} },

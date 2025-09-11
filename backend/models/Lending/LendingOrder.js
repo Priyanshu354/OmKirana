@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const checkoutItemSchema = new mongoose.Schema({
+const lendingOrderItemSchema = new mongoose.Schema({
   product: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Product",
@@ -27,7 +27,7 @@ const checkoutItemSchema = new mongoose.Schema({
   MRP: { type: Number, required: true, min: 0 },
 });
 
-// Address Schema for Delivery orders
+
 const addressSchema = new mongoose.Schema(
   {
     address: { type: String, required: true },
@@ -38,17 +38,12 @@ const addressSchema = new mongoose.Schema(
   { _id: false }
 );
 
-const checkoutSchema = new mongoose.Schema(
+
+const lendingOrderSchema = new mongoose.Schema(
   {
     user: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 
-    checkoutItems: [checkoutItemSchema],
-
-    paymentMethod: {
-      type: String,
-      enum: ["RAZORPAY", "COD", "LEND"],
-      required: true,
-    },
+    orderItems: [lendingOrderItemSchema],
 
     deliveryType: {
       type: String,
@@ -57,35 +52,48 @@ const checkoutSchema = new mongoose.Schema(
     },
 
     shippingAddress: {
-      type: addressSchema,
+      type: shippingAddressSchema,
       required: function () {
         return this.deliveryType === "DELIVERY";
       },
     },
-    
+
+    paymentMethod: {
+      type: String,
+      enum: ["RAZORPAY", "COD", "LEND"],
+      required: true,
+    },
+
     name: { type: String, required: true },
     mobile: { type: String, required: true },
-    totalPrice: { type: Number, min: 1, required: true },
+    totalPrice: { type: Number, required: true, min: 1 },
 
     // Payment details
     paymentStatus: {
       type: String,
-      enum: ["Pending", "Paid", "Failed"],
+      enum: ["Pending", "Paid", "Failed", "Lending"],
       default: "Pending",
     },
+
+    // special for lending partners
+    paidAmount: { type: Number, default: 0},
+
     isPaid: { type: Boolean, default: false },
-    paymentDetails: { type: Object, default: {} },
     paidAt: { type: Date },
+    paymentDetails: { type: Object, default: {} },
 
+    // Delivery details
+    isDelivered: { type: Boolean, default: false },
+    deliveredAt: { type: Date },
 
-    expiresAt: {
-        type: Date,
-        default: () => Date.now() + 30 * 60 * 1000,
-        index: { expires: 0 },
-    }
-
+    // Order status
+    status: {
+      type: String,
+      enum: ["Processing", "Shipped", "Delivered", "Cancelled"],
+      default: "Processing",
+    },
   },
   { timestamps: true }
 );
 
-module.exports = mongoose.model("Checkout", checkoutSchema);
+module.exports = mongoose.model("LendingOrder", lendingOrderSchema);

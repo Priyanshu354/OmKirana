@@ -30,6 +30,10 @@ const userSchema = new mongoose.Schema({
         type : String, 
         enum : ["customer", "admin"],
         default : "customer",
+    },
+    lendingAllowed: {
+        type : Boolean,
+        default : false,
     }
 }, {timestamps: true});
 

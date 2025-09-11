@@ -98,3 +98,4 @@
     - Users earn loyalty points per purchase
     - Points redeemable on future purchases or lending dues
 - Multi-language Support
+- Advance Payment for landing page.

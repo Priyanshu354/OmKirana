@@ -2,7 +2,7 @@ const express = require("express");
 const Product = require("../models/Product");
 const { default: mongoose } = require("mongoose");
 const handleError = require("../utils/handleError");
-
+const paginate = require("../utils/paginate");
 const router = express.Router();
 
 // Common projection for all product queries
@@ -32,16 +32,6 @@ const aggregateProducts = async (pipeline) => {
   return await Product.aggregate(pipeline);
 };
 
-// Cursor-based pagination helper
-const paginate = (docs, limit) => {
-  const hasMore = docs.length > limit;
-  if (hasMore) docs.pop(); // remove the extra one
-  return {
-    docs,
-    hasMore,
-    lastId: docs.length ? docs[docs.length - 1]._id : null,
-  };
-};
 
 // @route   GET api/products
 // @desc    Get products with cursor-based pagination
